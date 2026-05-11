@@ -1,0 +1,182 @@
+📊 Deliverable 1 — Strategic pitch ⏰ Due: Monday, May 11th at 23:59
+
+The goal is focus. Before you dive into the "how," you must master the "why." This one-pager is your opportunity to prove that you are solving a specific, high-value problem for La marine nationale.
+
+
+
+A. Define the Scope
+
+Clearly state the specific area, problem, or opportunity you have chosen to tackle.
+
+The Problem Statement: What is the specific pain point or untapped opportunity?
+The Objective: What is the primary goal of this work? Be precise.
+
+
+B. Establish the Relevancy
+
+This is where you bridge the gap between a generic project and a tailored solution. How does this subjec relate to La Marine Nationale's public challenges?
+
+
+
+C. Argue the Importance (The "So What?")
+
+Show us the potential ROI of your focus. If you solve this, what changes for La Marine Nationale? Which specific metrics are at stake? Why is it critical to address this subject now rather than six months from now?
+
+
+
+Format: PDF, 1 page max. This should be a "fast-read" use bullet points, bold text for emphasis, and clear headings.
+
+Deliverable 2: Intelligence Gathering ⏰ Due: Tuesday May 12th at 23:59
+
+
+
+The clock is ticking. This isn't a research paper; it’s a mission briefing. We need to see your "stack." The goal of this checkup is to ensure you aren't building your analysis on a foundation of sand. Show us your raw materials and the tools you are using to mine them.
+
+
+
+A. The OSINT Framework
+How are you gathering your intel? We want to see the methodology.
+
+Source Mapping: List the specific open-source intelligence (OSINT) channels you are leveraging (e.g., social listening, public financial filings, satellite imagery, web scraping, or industry forums).
+Tooling: Which tools are in your belt? (e.g., Python libraries, Google Dorks, specialized search engines). Explain why these are the right tools for this specific target.
+
+
+B. Dataset Inventory
+Show us the "Gold" you’ve found.
+
+The Catalog: List the primary datasets you have successfully secured.
+Data Provenance: Where did this data come from, and how fresh is it?
+The "So What": For each major dataset, write one sentence on the specific signal it provides for your chosen subject.
+
+
+C. Intelligence Gaps & Risks
+Be honest about what you don't know yet.
+
+The Missing Link: What data point is currently missing that would make your project a "home run"?
+Mitigation: How do you plan to bypass this gap? (e.g., using a proxy metric or a different OSINT technique).
+
+
+Format: PDF, 1 page max. Use a table or bulleted list for the datasets.
+
+
+🗺️ Deliverable 3 — Executive Presentation ⏰ Due: Wednesday, May 13th at 11:59
+
+
+
+A presentation delivering your use case's core output, You have 3 days of momentum behind you; now, prove that your work belongs in their roadmap.
+
+
+
+The content and structure of your presentation are yours to decide. Dashboards, live demos, prototypes, and any other format that strengthens your case are welcome alongside or instead of slides. What matters is that your work answers your use case's core question with evidence, not just ideas.
+
+
+
+You will present your work as a data analytics team pitching findings and recommendations to Marine Nationale (played by the jury). They know the data, they know the reality of the field, convince them your analysis reveals something they can use.
+
+
+
+Format: PDF (plus any live demo or supporting material you wish to show during the presentation)
+
+
+
+   #
+
+Criterion
+
+Description
+
+Points
+
+     1
+
+💡 Insight Impact
+
+The analysis reveals a "non-obvious" truth about the company. The output is high-value and professional.
+
+/30
+
+   2
+
+⚙️ Technical Rigor
+
+The methodology is sound, and the OSINT framework was used effectively to generate unique data.
+
+/30
+
+   3
+
+🚀 Actionability
+
+Recommendations are realistic, specific to the target company, and tied to clear business outcomes.
+
+/25
+
+   4
+
+🎤 Pitch & Defense
+
+The team communicates with authority, handles tough questions with data, and masters the 10-minute window.
+
+/15
+
+   
+
+Total
+
+
+
+/100
+
+
+🎯 Objective
+The AI Log documents how your team uses AI tools (which you should definitely use — ChatGPT, Gemini, Claude, etc.) responsibly and effectively.
+
+It demonstrates transparency, ethical practice, and your ability to integrate AI into real workflows.
+
+
+
+📦 Expected Output
+Format: 2 pages (PDF).
+Must include public links (open to anyone) to GPT chat(s) or other AI sessions used for the project.
+File name: [GroupNumber]_AILog_[CaseName].pdf
+
+
+📋 Content Requirements
+Your AI Log must include:
+
+Open Access Links: Provide shareable links to your AI sessions (“Anyone with the link can view”).
+Tool(s) Used: List the AI tools you used (e.g. ChatGPT, Gemini, Claude, Copilot).
+Purpose of Use: Explain for what tasks you used AI — ideation, data analysis, code generation, drafting, etc.
+Prompt Examples: Include exact prompts or screenshots of your key queries.
+Outputs and Validation: Summarize what AI produced and how you validated or corrected it.
+Reflection (Critical Analysis):Identify 3 areas where AI performed better than you would have.
+Identify 3 areas where you outperformed AI (judgment, creativity, or interpretation).
+Reflect on what you learned from this collaboration between human and AI.
+
+
+✅ Evaluation Criteria
+
+
+   Criterion
+
+Description
+
+Weight
+
+    Transparency & Documentation
+
+AI interactions are clearly described, and public links are accessible.
+
+30 %
+
+   Critical Reflection & Insight
+
+Demonstrates thoughtful analysis of AI strengths vs. human skills (3 + 3 areas identified).
+
+50%
+
+   Ethics & Professionalism
+
+Outputs are validated, ethical standards respected, no confidential data used.
+
+20 %
