@@ -45,5 +45,6 @@ Votre réponse  comporte :
 ## Pour télécharger les données :
 
 ```powershell
-hf download DefendIntelligence/vessel-detection-labeled-patches --repo-type dataset --local-dir ./data/vessel-detection-labeled-patches
-https://challenge.xviewdataset.org/download-links (telecharger les deux premiers zip)
+dans le terminal : hf download DefendIntelligence/vessel-detection-labeled-patches --repo-type dataset --local-dir ./data/vessel-detection-labeled-patches
+
+lien : https://challenge.xviewdataset.org/download-links (telecharger les deux premiers zip)
