@@ -41,3 +41,8 @@ Votre réponse  comporte :
 + Automatisation : usage d'API, de librairies, code performant, etc.
 + Collaboration : bonne répartition du travail entre les membres
 + Présentation : clarté, conviction, ergonomie
+
+## Pour télécharger les données :
+
+```powershell
+hf download DefendIntelligence/vessel-detection-labeled-patches --repo-type dataset --local-dir ./data/vessel-detection-labeled-patches
