@@ -1,0 +1,16 @@
+zone_name,detections,human_reviews,combat_detections,support_detections,civilian_detections,max_priority_score,avg_priority_score,avg_quality_score,max_alert_level,effective_risk_level,image_lat,image_lon,first_observation,last_observation,observation_days,possible_co_presence_count
+Port de Shanghai,18,13,6,4,8,85,64.1,62.2,Revue prioritaire immédiate,Critical,31.2,121.5,2026-01-29 17:19:53+00:00,2026-05-23 19:07:48+00:00,5,12
+Détroit de Malacca,38,31,22,4,12,83,62.4,68.9,Revue prioritaire immédiate,Critical,3.0,101.0,2026-01-04 02:10:50+00:00,2026-12-17 13:07:30+00:00,11,29
+Port militaire de Toulon,10,8,7,1,2,81,68.0,58.8,Revue prioritaire immédiate,Critical,43.12,5.9,2026-06-29 00:59:57+00:00,2026-10-11 21:36:25+00:00,2,10
+Mer de Chine Méridionale,30,9,14,6,10,77,50.7,66.7,Alerte analyste,Critical,15.0,110.0,2026-04-16 20:48:47+00:00,2026-11-23 04:44:28+00:00,8,29
+Base navale de Pearl Harbor,6,4,3,2,1,77,65.7,54.2,Alerte analyste,Critical,21.4,-157.9,2026-02-18 19:25:38+00:00,2026-05-05 06:59:15+00:00,2,5
+Port de Singapour,19,14,10,2,7,74,59.2,65.2,Alerte analyste,Critical,1.3,103.8,2026-03-07 18:56:42+00:00,2026-10-22 12:31:57+00:00,5,15
+Détroit d'Ormuz,10,6,6,1,3,73,63.2,61.0,Alerte analyste,Critical,25.0,56.0,2026-04-10 18:36:32+00:00,2026-10-21 20:26:19+00:00,4,6
+Base navale de Rota,21,11,10,3,8,72,52.6,66.4,Alerte analyste,High,36.6,-6.4,2026-02-25 09:12:06+00:00,2026-11-09 21:23:47+00:00,6,20
+Golfe Persique,5,2,3,1,1,70,57.2,71.8,Alerte analyste,Critical,26.0,55.0,2026-05-04 09:01:54+00:00,2026-05-17 15:07:23+00:00,2,0
+Port de Busan,7,3,3,0,4,65,49.0,58.4,Alerte analyste,High,35.1,129.0,2026-01-17 08:57:22+00:00,2026-06-20 06:08:55+00:00,3,6
+Base navale de Norfolk,26,8,18,3,5,62,47.1,65.2,Alerte analyste,High,36.9,-76.3,2026-02-09 05:22:46+00:00,2026-12-12 15:58:41+00:00,9,17
+Mer Baltique,26,2,16,2,8,60,37.9,68.7,Alerte analyste,Medium,55.0,20.0,2026-01-06 11:03:09+00:00,2026-10-03 08:53:49+00:00,8,25
+Base navale de Yokosuka,12,1,4,3,5,59,36.7,71.8,À examiner,High,35.4,139.7,2026-03-02 15:20:53+00:00,2026-12-10 05:15:09+00:00,6,7
+Canal de Suez,1,0,1,0,0,52,52.0,53.0,À examiner,High,30.0,32.5,2026-05-30 12:04:38+00:00,2026-05-30 12:04:38+00:00,1,0
+Port de Rotterdam,27,0,11,6,10,49,29.1,71.8,À examiner,Low,51.9,4.5,2026-03-09 00:27:29+00:00,2026-11-19 19:07:51+00:00,9,25

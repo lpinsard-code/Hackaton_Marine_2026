@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_2d6f6f4fb295c3c54cadb85e53ed9912 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+    <div style="
+        position: fixed;
+        top: 10px;
+        left: 50px;
+        z-index: 9999;
+        background-color: white;
+        padding: 12px;
+        border: 1px solid #999;
+        border-radius: 4px;
+        font-family: Arial;
+        max-width: 520px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    ">
+    <b>Priorisation des observations navales — scoring analyste v2</b><br>
+    Les points représentent des zones d'observation, pas la position GPS exacte des navires.<br>
+    Le score sert à prioriser la revue humaine, pas à mesurer une menace réelle.
+    </div>
+    
+    
+    <div style="
+        position: fixed;
+        bottom: 30px;
+        left: 50px;
+        z-index: 9999;
+        background-color: white;
+        padding: 10px;
+        border: 1px solid #999;
+        border-radius: 4px;
+        font-family: Arial;
+        line-height: 1.5;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    ">
+    <b>Légende</b><br>
+    <span style="color: darkred;">●</span> Revue prioritaire immédiate<br>
+    <span style="color: red;">●</span> Alerte analyste<br>
+    <span style="color: orange;">●</span> À examiner<br>
+    <span style="color: gray;">●</span> Veille<br>
+    Taille du point : volume d'alertes à revue humaine
+    </div>
+    
+    
+            <div class="folium-map" id="map_2d6f6f4fb295c3c54cadb85e53ed9912" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_2d6f6f4fb295c3c54cadb85e53ed9912 = L.map(
+                "map_2d6f6f4fb295c3c54cadb85e53ed9912",
+                {
+                    center: [29.794666666666664, 42.55333333333333],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 2,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d31039c4cacfce4387257377e2041f16 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_d31039c4cacfce4387257377e2041f16.addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+            var circle_marker_9cc62542b54be7448b32cc88822e5ddc = L.circleMarker(
+                [31.2, 121.5],
+                {"bubblingMouseEvents": true, "color": "darkred", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.0, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_e62ff45b761a1389caae6a48d8221a5e = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_c14fa6c38a78615dd3a3fc384d325f35 = $(`<div id="html_c14fa6c38a78615dd3a3fc384d325f35" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Port de Shanghai</h4>             <b>Risque effectif :</b> Critical<br>             <b>Niveau max :</b> Revue prioritaire immédiate<br>             <b>Score max :</b> 85<br>             <b>Détections :</b> 18<br>             <b>Revues humaines :</b> 13<br>             <b>Navires de combat :</b> 6<br>             <b>Navires civils :</b> 8<br>             <b>Jours observés :</b> 5<br>             <b>Première observation :</b> 2026-01-29 17:19:53+00:00<br>             <b>Dernière observation :</b> 2026-05-23 19:07:48+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-007-00027 — Destroyer — score 85 — Revue prioritaire immédiate</li><li>DET-007-00023 — Croiseur — score 81 — Revue prioritaire immédiate</li><li>DET-037-00117 — Corvette — score 73 — Alerte analyste</li><li>DET-037-00118 — Navire de guerre — score 73 — Alerte analyste</li><li>DET-037-00120 — Cargo — score 70 — Alerte analyste</li></ol>         </div>         </div>`)[0];
+                popup_e62ff45b761a1389caae6a48d8221a5e.setContent(html_c14fa6c38a78615dd3a3fc384d325f35);
+            
+        
+
+        circle_marker_9cc62542b54be7448b32cc88822e5ddc.bindPopup(popup_e62ff45b761a1389caae6a48d8221a5e)
+        ;
+
+        
+    
+    
+            circle_marker_9cc62542b54be7448b32cc88822e5ddc.bindTooltip(
+                `<div>
+                     Port de Shanghai — score max 85 — Revue prioritaire immédiate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8fddb7e1adcdf53a47aca046ded35a8a = L.circleMarker(
+                [3.0, 101.0],
+                {"bubblingMouseEvents": true, "color": "darkred", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 26, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_8bea0204f3d04e3ebe938342bd679182 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_8e82129bdf779ab3288d83849076cf57 = $(`<div id="html_8e82129bdf779ab3288d83849076cf57" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Détroit de Malacca</h4>             <b>Risque effectif :</b> Critical<br>             <b>Niveau max :</b> Revue prioritaire immédiate<br>             <b>Score max :</b> 83<br>             <b>Détections :</b> 38<br>             <b>Revues humaines :</b> 31<br>             <b>Navires de combat :</b> 22<br>             <b>Navires civils :</b> 12<br>             <b>Jours observés :</b> 11<br>             <b>Première observation :</b> 2026-01-04 02:10:50+00:00<br>             <b>Dernière observation :</b> 2026-12-17 13:07:30+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-022-00073 — Destroyer — score 83 — Revue prioritaire immédiate</li><li>DET-091-00236 — Destroyer — score 78 — Alerte analyste</li><li>DET-031-00100 — Frégate — score 75 — Alerte analyste</li><li>DET-006-00022 — Porte-avions — score 74 — Alerte analyste</li><li>DET-086-00221 — Croiseur — score 72 — Alerte analyste</li></ol>         </div>         </div>`)[0];
+                popup_8bea0204f3d04e3ebe938342bd679182.setContent(html_8e82129bdf779ab3288d83849076cf57);
+            
+        
+
+        circle_marker_8fddb7e1adcdf53a47aca046ded35a8a.bindPopup(popup_8bea0204f3d04e3ebe938342bd679182)
+        ;
+
+        
+    
+    
+            circle_marker_8fddb7e1adcdf53a47aca046ded35a8a.bindTooltip(
+                `<div>
+                     Détroit de Malacca — score max 83 — Revue prioritaire immédiate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f93e75780c42e3e5e9a3614e4df1ab34 = L.circleMarker(
+                [43.12, 5.9],
+                {"bubblingMouseEvents": true, "color": "darkred", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.0, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_544a501e554c2304daad7df0a2de16ea = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_344bb85ac2d70ed2ee7275cde9a55188 = $(`<div id="html_344bb85ac2d70ed2ee7275cde9a55188" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Port militaire de Toulon</h4>             <b>Risque effectif :</b> Critical<br>             <b>Niveau max :</b> Revue prioritaire immédiate<br>             <b>Score max :</b> 81<br>             <b>Détections :</b> 10<br>             <b>Revues humaines :</b> 8<br>             <b>Navires de combat :</b> 7<br>             <b>Navires civils :</b> 2<br>             <b>Jours observés :</b> 2<br>             <b>Première observation :</b> 2026-06-29 00:59:57+00:00<br>             <b>Dernière observation :</b> 2026-10-11 21:36:25+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-067-00182 — Sous-marin — score 81 — Revue prioritaire immédiate</li><li>DET-067-00180 — Destroyer — score 77 — Alerte analyste</li><li>DET-073-00197 — Sous-marin — score 74 — Alerte analyste</li><li>DET-067-00183 — Navire de guerre — score 73 — Alerte analyste</li><li>DET-073-00198 — Destroyer — score 71 — Alerte analyste</li></ol>         </div>         </div>`)[0];
+                popup_544a501e554c2304daad7df0a2de16ea.setContent(html_344bb85ac2d70ed2ee7275cde9a55188);
+            
+        
+
+        circle_marker_f93e75780c42e3e5e9a3614e4df1ab34.bindPopup(popup_544a501e554c2304daad7df0a2de16ea)
+        ;
+
+        
+    
+    
+            circle_marker_f93e75780c42e3e5e9a3614e4df1ab34.bindTooltip(
+                `<div>
+                     Port militaire de Toulon — score max 81 — Revue prioritaire immédiate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a60beb947fb9fd8762d803891b65b309 = L.circleMarker(
+                [15.0, 110.0],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.0, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_2c900b3ba597e491e70a31277060a91e = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_2078a821b0bb2f01abca7c05c466768c = $(`<div id="html_2078a821b0bb2f01abca7c05c466768c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Mer de Chine Méridionale</h4>             <b>Risque effectif :</b> Critical<br>             <b>Niveau max :</b> Alerte analyste<br>             <b>Score max :</b> 77<br>             <b>Détections :</b> 30<br>             <b>Revues humaines :</b> 9<br>             <b>Navires de combat :</b> 14<br>             <b>Navires civils :</b> 10<br>             <b>Jours observés :</b> 8<br>             <b>Première observation :</b> 2026-04-16 20:48:47+00:00<br>             <b>Dernière observation :</b> 2026-11-23 04:44:28+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-034-00108 — Sous-marin — score 77 — Alerte analyste</li><li>DET-083-00209 — Croiseur — score 72 — Alerte analyste</li><li>DET-083-00208 — Destroyer — score 72 — Alerte analyste</li><li>DET-034-00109 — Porte-avions — score 72 — Alerte analyste</li><li>DET-069-00189 — Porte-avions — score 68 — Alerte analyste</li></ol>         </div>         </div>`)[0];
+                popup_2c900b3ba597e491e70a31277060a91e.setContent(html_2078a821b0bb2f01abca7c05c466768c);
+            
+        
+
+        circle_marker_a60beb947fb9fd8762d803891b65b309.bindPopup(popup_2c900b3ba597e491e70a31277060a91e)
+        ;
+
+        
+    
+    
+            circle_marker_a60beb947fb9fd8762d803891b65b309.bindTooltip(
+                `<div>
+                     Mer de Chine Méridionale — score max 77 — Alerte analyste
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e8f496e833b8991ecf57e61a0653459b = L.circleMarker(
+                [21.4, -157.9],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.0, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_319cea06558eb96128ebaaf2e927a4e4 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_2a42140419f53b91f49168e3036dcd8f = $(`<div id="html_2a42140419f53b91f49168e3036dcd8f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Base navale de Pearl Harbor</h4>             <b>Risque effectif :</b> Critical<br>             <b>Niveau max :</b> Alerte analyste<br>             <b>Score max :</b> 77<br>             <b>Détections :</b> 6<br>             <b>Revues humaines :</b> 4<br>             <b>Navires de combat :</b> 3<br>             <b>Navires civils :</b> 1<br>             <b>Jours observés :</b> 2<br>             <b>Première observation :</b> 2026-02-18 19:25:38+00:00<br>             <b>Dernière observation :</b> 2026-05-05 06:59:15+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-085-00218 — Croiseur — score 77 — Alerte analyste</li><li>DET-085-00217 — Porte-avions — score 74 — Alerte analyste</li><li>DET-085-00214 — Corvette — score 69 — Alerte analyste</li><li>DET-085-00215 — Bâtiment de débarquement — score 63 — Alerte analyste</li><li>DET-081-00207 — Bâtiment de débarquement — score 57 — À examiner</li></ol>         </div>         </div>`)[0];
+                popup_319cea06558eb96128ebaaf2e927a4e4.setContent(html_2a42140419f53b91f49168e3036dcd8f);
+            
+        
+
+        circle_marker_e8f496e833b8991ecf57e61a0653459b.bindPopup(popup_319cea06558eb96128ebaaf2e927a4e4)
+        ;
+
+        
+    
+    
+            circle_marker_e8f496e833b8991ecf57e61a0653459b.bindTooltip(
+                `<div>
+                     Base navale de Pearl Harbor — score max 77 — Alerte analyste
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2dbfa18b9baafff7f4c49893628f0d9f = L.circleMarker(
+                [1.3, 103.8],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.0, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_5336f4bcd67c89b0276ccd7a8d422e05 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_21438567b21321c331c09858561156db = $(`<div id="html_21438567b21321c331c09858561156db" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Port de Singapour</h4>             <b>Risque effectif :</b> Critical<br>             <b>Niveau max :</b> Alerte analyste<br>             <b>Score max :</b> 74<br>             <b>Détections :</b> 19<br>             <b>Revues humaines :</b> 14<br>             <b>Navires de combat :</b> 10<br>             <b>Navires civils :</b> 7<br>             <b>Jours observés :</b> 5<br>             <b>Première observation :</b> 2026-03-07 18:56:42+00:00<br>             <b>Dernière observation :</b> 2026-10-22 12:31:57+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-050-00141 — Sous-marin — score 74 — Alerte analyste</li><li>DET-050-00139 — Croiseur — score 71 — Alerte analyste</li><li>DET-087-00222 — Croiseur — score 69 — Alerte analyste</li><li>DET-010-00036 — Sous-marin — score 68 — Alerte analyste</li><li>DET-020-00065 — Frégate — score 66 — Alerte analyste</li></ol>         </div>         </div>`)[0];
+                popup_5336f4bcd67c89b0276ccd7a8d422e05.setContent(html_21438567b21321c331c09858561156db);
+            
+        
+
+        circle_marker_2dbfa18b9baafff7f4c49893628f0d9f.bindPopup(popup_5336f4bcd67c89b0276ccd7a8d422e05)
+        ;
+
+        
+    
+    
+            circle_marker_2dbfa18b9baafff7f4c49893628f0d9f.bindTooltip(
+                `<div>
+                     Port de Singapour — score max 74 — Alerte analyste
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9b2781f99786d5e2a011aa51f40abd90 = L.circleMarker(
+                [25.0, 56.0],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.0, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_d105c2bc2ed50df9fb8cc6ce0ee1d35c = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_59a55606693ee1501fa6b4ca56e2e247 = $(`<div id="html_59a55606693ee1501fa6b4ca56e2e247" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Détroit d'Ormuz</h4>             <b>Risque effectif :</b> Critical<br>             <b>Niveau max :</b> Alerte analyste<br>             <b>Score max :</b> 73<br>             <b>Détections :</b> 10<br>             <b>Revues humaines :</b> 6<br>             <b>Navires de combat :</b> 6<br>             <b>Navires civils :</b> 3<br>             <b>Jours observés :</b> 4<br>             <b>Première observation :</b> 2026-04-10 18:36:32+00:00<br>             <b>Dernière observation :</b> 2026-10-21 20:26:19+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-049-00136 — Croiseur — score 73 — Alerte analyste</li><li>DET-049-00135 — Destroyer — score 73 — Alerte analyste</li><li>DET-024-00079 — Destroyer — score 72 — Alerte analyste</li><li>DET-008-00029 — Porte-avions — score 70 — Alerte analyste</li><li>DET-024-00077 — Porte-avions — score 69 — Alerte analyste</li></ol>         </div>         </div>`)[0];
+                popup_d105c2bc2ed50df9fb8cc6ce0ee1d35c.setContent(html_59a55606693ee1501fa6b4ca56e2e247);
+            
+        
+
+        circle_marker_9b2781f99786d5e2a011aa51f40abd90.bindPopup(popup_d105c2bc2ed50df9fb8cc6ce0ee1d35c)
+        ;
+
+        
+    
+    
+            circle_marker_9b2781f99786d5e2a011aa51f40abd90.bindTooltip(
+                `<div>
+                     Détroit d'Ormuz — score max 73 — Alerte analyste
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6141ec4c1beb78bbd5d20c53cf93128c = L.circleMarker(
+                [36.6, -6.4],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.0, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_206be5cefaae15b02dfe21582ff30a81 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_4599647fa09d88d24cdd18080ad5ed6d = $(`<div id="html_4599647fa09d88d24cdd18080ad5ed6d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Base navale de Rota</h4>             <b>Risque effectif :</b> High<br>             <b>Niveau max :</b> Alerte analyste<br>             <b>Score max :</b> 72<br>             <b>Détections :</b> 21<br>             <b>Revues humaines :</b> 11<br>             <b>Navires de combat :</b> 10<br>             <b>Navires civils :</b> 8<br>             <b>Jours observés :</b> 6<br>             <b>Première observation :</b> 2026-02-25 09:12:06+00:00<br>             <b>Dernière observation :</b> 2026-11-09 21:23:47+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-039-00123 — Porte-avions — score 72 — Alerte analyste</li><li>DET-063-00171 — Sous-marin — score 65 — Alerte analyste</li><li>DET-005-00016 — Destroyer — score 62 — Alerte analyste</li><li>DET-039-00125 — Frégate — score 60 — Alerte analyste</li><li>DET-063-00170 — Frégate — score 60 — Alerte analyste</li></ol>         </div>         </div>`)[0];
+                popup_206be5cefaae15b02dfe21582ff30a81.setContent(html_4599647fa09d88d24cdd18080ad5ed6d);
+            
+        
+
+        circle_marker_6141ec4c1beb78bbd5d20c53cf93128c.bindPopup(popup_206be5cefaae15b02dfe21582ff30a81)
+        ;
+
+        
+    
+    
+            circle_marker_6141ec4c1beb78bbd5d20c53cf93128c.bindTooltip(
+                `<div>
+                     Base navale de Rota — score max 72 — Alerte analyste
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0610cbf6b438eef52a73c6928a10a10e = L.circleMarker(
+                [26.0, 55.0],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.0, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_b43dcd0b4153d5a970078b6ce618203c = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_2b0a0aaa21923d6db9242cc67dbd3428 = $(`<div id="html_2b0a0aaa21923d6db9242cc67dbd3428" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Golfe Persique</h4>             <b>Risque effectif :</b> Critical<br>             <b>Niveau max :</b> Alerte analyste<br>             <b>Score max :</b> 70<br>             <b>Détections :</b> 5<br>             <b>Revues humaines :</b> 2<br>             <b>Navires de combat :</b> 3<br>             <b>Navires civils :</b> 1<br>             <b>Jours observés :</b> 2<br>             <b>Première observation :</b> 2026-05-04 09:01:54+00:00<br>             <b>Dernière observation :</b> 2026-05-17 15:07:23+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-014-00050 — Destroyer — score 70 — Alerte analyste</li><li>DET-014-00049 — Navire de guerre — score 62 — Alerte analyste</li><li>DET-014-00048 — Frégate — score 59 — À examiner</li><li>DET-014-00051 — Navire de soutien — score 56 — À examiner</li><li>DET-079-00204 — Navire civil — score 39 — Veille</li></ol>         </div>         </div>`)[0];
+                popup_b43dcd0b4153d5a970078b6ce618203c.setContent(html_2b0a0aaa21923d6db9242cc67dbd3428);
+            
+        
+
+        circle_marker_0610cbf6b438eef52a73c6928a10a10e.bindPopup(popup_b43dcd0b4153d5a970078b6ce618203c)
+        ;
+
+        
+    
+    
+            circle_marker_0610cbf6b438eef52a73c6928a10a10e.bindTooltip(
+                `<div>
+                     Golfe Persique — score max 70 — Alerte analyste
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_853086b187bfecff5f39c6ea8617a827 = L.circleMarker(
+                [35.1, 129.0],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.0, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_ca94452924f6a6e231e893d3945ad028 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_9e4bb70093f23312c5aece8e5045d832 = $(`<div id="html_9e4bb70093f23312c5aece8e5045d832" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Port de Busan</h4>             <b>Risque effectif :</b> High<br>             <b>Niveau max :</b> Alerte analyste<br>             <b>Score max :</b> 65<br>             <b>Détections :</b> 7<br>             <b>Revues humaines :</b> 3<br>             <b>Navires de combat :</b> 3<br>             <b>Navires civils :</b> 4<br>             <b>Jours observés :</b> 3<br>             <b>Première observation :</b> 2026-01-17 08:57:22+00:00<br>             <b>Dernière observation :</b> 2026-06-20 06:08:55+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-036-00114 — Croiseur — score 65 — Alerte analyste</li><li>DET-059-00161 — Croiseur — score 63 — Alerte analyste</li><li>DET-036-00112 — Frégate — score 57 — À examiner</li><li>DET-059-00160 — Cargo — score 44 — À examiner</li><li>DET-036-00115 — Chalutier — score 42 — À examiner</li></ol>         </div>         </div>`)[0];
+                popup_ca94452924f6a6e231e893d3945ad028.setContent(html_9e4bb70093f23312c5aece8e5045d832);
+            
+        
+
+        circle_marker_853086b187bfecff5f39c6ea8617a827.bindPopup(popup_ca94452924f6a6e231e893d3945ad028)
+        ;
+
+        
+    
+    
+            circle_marker_853086b187bfecff5f39c6ea8617a827.bindTooltip(
+                `<div>
+                     Port de Busan — score max 65 — Alerte analyste
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ca21605836cbc6f5bffcaf354680fb43 = L.circleMarker(
+                [36.9, -76.3],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.0, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_11532ada13ea920d76fec6d0967e1a05 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_221502e35c342586aa233cc30a48c86d = $(`<div id="html_221502e35c342586aa233cc30a48c86d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Base navale de Norfolk</h4>             <b>Risque effectif :</b> High<br>             <b>Niveau max :</b> Alerte analyste<br>             <b>Score max :</b> 62<br>             <b>Détections :</b> 26<br>             <b>Revues humaines :</b> 8<br>             <b>Navires de combat :</b> 18<br>             <b>Navires civils :</b> 5<br>             <b>Jours observés :</b> 9<br>             <b>Première observation :</b> 2026-02-09 05:22:46+00:00<br>             <b>Dernière observation :</b> 2026-12-12 15:58:41+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-000-00004 — Destroyer — score 62 — Alerte analyste</li><li>DET-052-00144 — Porte-avions — score 62 — Alerte analyste</li><li>DET-016-00055 — Porte-avions — score 60 — Alerte analyste</li><li>DET-088-00225 — Destroyer — score 60 — Alerte analyste</li><li>DET-090-00232 — Sous-marin — score 59 — À examiner</li></ol>         </div>         </div>`)[0];
+                popup_11532ada13ea920d76fec6d0967e1a05.setContent(html_221502e35c342586aa233cc30a48c86d);
+            
+        
+
+        circle_marker_ca21605836cbc6f5bffcaf354680fb43.bindPopup(popup_11532ada13ea920d76fec6d0967e1a05)
+        ;
+
+        
+    
+    
+            circle_marker_ca21605836cbc6f5bffcaf354680fb43.bindTooltip(
+                `<div>
+                     Base navale de Norfolk — score max 62 — Alerte analyste
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_16e93108db6f1ccf2796c4afdb9d0c3a = L.circleMarker(
+                [55.0, 20.0],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.0, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_64163f290315e50f45bc0b29d957526a = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_119b21e7c448776195224bdca3c7b3bb = $(`<div id="html_119b21e7c448776195224bdca3c7b3bb" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Mer Baltique</h4>             <b>Risque effectif :</b> Medium<br>             <b>Niveau max :</b> Alerte analyste<br>             <b>Score max :</b> 60<br>             <b>Détections :</b> 26<br>             <b>Revues humaines :</b> 2<br>             <b>Navires de combat :</b> 16<br>             <b>Navires civils :</b> 8<br>             <b>Jours observés :</b> 8<br>             <b>Première observation :</b> 2026-01-06 11:03:09+00:00<br>             <b>Dernière observation :</b> 2026-10-03 08:53:49+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-017-00058 — Destroyer — score 60 — Alerte analyste</li><li>DET-009-00034 — Destroyer — score 55 — À examiner</li><li>DET-017-00057 — Porte-avions — score 55 — À examiner</li><li>DET-054-00150 — Sous-marin — score 53 — À examiner</li><li>DET-009-00031 — Frégate — score 52 — À examiner</li></ol>         </div>         </div>`)[0];
+                popup_64163f290315e50f45bc0b29d957526a.setContent(html_119b21e7c448776195224bdca3c7b3bb);
+            
+        
+
+        circle_marker_16e93108db6f1ccf2796c4afdb9d0c3a.bindPopup(popup_64163f290315e50f45bc0b29d957526a)
+        ;
+
+        
+    
+    
+            circle_marker_16e93108db6f1ccf2796c4afdb9d0c3a.bindTooltip(
+                `<div>
+                     Mer Baltique — score max 60 — Alerte analyste
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_61304fd180210dfabd143c53aa10e983 = L.circleMarker(
+                [35.4, 139.7],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.0, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_f8405e781548681d91b8f6c7b0d6c9b8 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_885629587f13fa3561dfc4213947fb36 = $(`<div id="html_885629587f13fa3561dfc4213947fb36" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Base navale de Yokosuka</h4>             <b>Risque effectif :</b> High<br>             <b>Niveau max :</b> À examiner<br>             <b>Score max :</b> 59<br>             <b>Détections :</b> 12<br>             <b>Revues humaines :</b> 1<br>             <b>Navires de combat :</b> 4<br>             <b>Navires civils :</b> 5<br>             <b>Jours observés :</b> 6<br>             <b>Première observation :</b> 2026-03-02 15:20:53+00:00<br>             <b>Dernière observation :</b> 2026-12-10 05:15:09+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-002-00010 — Porte-avions — score 59 — À examiner</li><li>DET-002-00011 — Navire de guerre — score 54 — À examiner</li><li>DET-084-00212 — Navire de guerre — score 49 — À examiner</li><li>DET-030-00094 — Navire de guerre — score 49 — À examiner</li><li>DET-043-00127 — Navire de soutien — score 43 — À examiner</li></ol>         </div>         </div>`)[0];
+                popup_f8405e781548681d91b8f6c7b0d6c9b8.setContent(html_885629587f13fa3561dfc4213947fb36);
+            
+        
+
+        circle_marker_61304fd180210dfabd143c53aa10e983.bindPopup(popup_f8405e781548681d91b8f6c7b0d6c9b8)
+        ;
+
+        
+    
+    
+            circle_marker_61304fd180210dfabd143c53aa10e983.bindTooltip(
+                `<div>
+                     Base navale de Yokosuka — score max 59 — À examiner
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_10f10eb5137c1e3696af79958813977e = L.circleMarker(
+                [30.0, 32.5],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_5c0041a8354ff39ad5d667d8e0b81298 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_ec250650a57fe8b3dabf303a1019cde5 = $(`<div id="html_ec250650a57fe8b3dabf303a1019cde5" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Canal de Suez</h4>             <b>Risque effectif :</b> High<br>             <b>Niveau max :</b> À examiner<br>             <b>Score max :</b> 52<br>             <b>Détections :</b> 1<br>             <b>Revues humaines :</b> 0<br>             <b>Navires de combat :</b> 1<br>             <b>Navires civils :</b> 0<br>             <b>Jours observés :</b> 1<br>             <b>Première observation :</b> 2026-05-30 12:04:38+00:00<br>             <b>Dernière observation :</b> 2026-05-30 12:04:38+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-053-00149 — Sous-marin — score 52 — À examiner</li></ol>         </div>         </div>`)[0];
+                popup_5c0041a8354ff39ad5d667d8e0b81298.setContent(html_ec250650a57fe8b3dabf303a1019cde5);
+            
+        
+
+        circle_marker_10f10eb5137c1e3696af79958813977e.bindPopup(popup_5c0041a8354ff39ad5d667d8e0b81298)
+        ;
+
+        
+    
+    
+            circle_marker_10f10eb5137c1e3696af79958813977e.bindTooltip(
+                `<div>
+                     Canal de Suez — score max 52 — À examiner
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_59d35f84dec3867398beb208d1546ef4 = L.circleMarker(
+                [51.9, 4.5],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "stroke": true, "weight": 3}
+            ).addTo(map_2d6f6f4fb295c3c54cadb85e53ed9912);
+        
+    
+        var popup_a41b65b325949c4043836c4c91df1cfa = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_ca3ba7cf772310b68caf5b2a7983e708 = $(`<div id="html_ca3ba7cf772310b68caf5b2a7983e708" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 360px;">             <h4>Port de Rotterdam</h4>             <b>Risque effectif :</b> Low<br>             <b>Niveau max :</b> À examiner<br>             <b>Score max :</b> 49<br>             <b>Détections :</b> 27<br>             <b>Revues humaines :</b> 0<br>             <b>Navires de combat :</b> 11<br>             <b>Navires civils :</b> 10<br>             <b>Jours observés :</b> 9<br>             <b>Première observation :</b> 2026-03-09 00:27:29+00:00<br>             <b>Dernière observation :</b> 2026-11-19 19:07:51+00:00<br>             <hr>             <b>Top observations :</b>             <ol><li>DET-097-00246 — Croiseur — score 49 — À examiner</li><li>DET-070-00191 — Destroyer — score 49 — À examiner</li><li>DET-021-00069 — Porte-avions — score 49 — À examiner</li><li>DET-070-00190 — Navire de guerre — score 46 — À examiner</li><li>DET-044-00129 — Croiseur — score 43 — À examiner</li></ol>         </div>         </div>`)[0];
+                popup_a41b65b325949c4043836c4c91df1cfa.setContent(html_ca3ba7cf772310b68caf5b2a7983e708);
+            
+        
+
+        circle_marker_59d35f84dec3867398beb208d1546ef4.bindPopup(popup_a41b65b325949c4043836c4c91df1cfa)
+        ;
+
+        
+    
+    
+            circle_marker_59d35f84dec3867398beb208d1546ef4.bindTooltip(
+                `<div>
+                     Port de Rotterdam — score max 49 — À examiner
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>

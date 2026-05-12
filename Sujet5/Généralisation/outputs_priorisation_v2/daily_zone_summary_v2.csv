@@ -1,0 +1,82 @@
+date_only,zone_name,detections,human_reviews,max_priority_score,avg_priority_score,combat_detections,support_detections,civilian_detections,possible_co_presence
+2026-01-04,Détroit de Malacca,4,4,74,67.5,3,1,0,False
+2026-01-06,Mer Baltique,3,0,53,40.7,2,0,1,True
+2026-01-13,Détroit de Malacca,5,4,71,61.6,4,0,1,True
+2026-01-17,Port de Busan,1,0,33,33.0,0,0,1,False
+2026-01-27,Mer Baltique,1,0,12,12.0,0,0,1,False
+2026-01-28,Mer Baltique,5,0,55,45.2,3,1,1,True
+2026-01-29,Port de Shanghai,1,1,52,52.0,0,0,1,False
+2026-02-09,Base navale de Norfolk,1,0,53,53.0,1,0,0,False
+2026-02-10,Base navale de Norfolk,3,2,60,47.0,2,0,1,True
+2026-02-13,Mer Baltique,4,0,48,35.0,3,0,1,True
+2026-02-17,Base navale de Norfolk,5,1,62,47.4,3,1,1,True
+2026-02-18,Base navale de Pearl Harbor,1,0,57,57.0,0,1,0,False
+2026-02-20,Mer Baltique,4,0,47,38.0,2,1,1,True
+2026-02-22,Base navale de Norfolk,1,0,42,42.0,1,0,0,False
+2026-02-25,Base navale de Rota,5,4,72,56.0,2,1,2,True
+2026-03-02,Base navale de Yokosuka,4,1,59,45.0,2,1,1,True
+2026-03-07,Port de Singapour,5,4,74,63.2,3,1,1,True
+2026-03-09,Port de Rotterdam,1,0,25,25.0,1,0,0,False
+2026-03-12,Base navale de Rota,4,0,57,48.8,1,2,1,True
+2026-03-13,Base navale de Rota,1,0,59,59.0,1,0,0,False
+2026-03-21,Port de Rotterdam,2,0,40,27.0,1,0,1,True
+2026-03-29,Port de Rotterdam,5,0,34,21.0,1,2,2,True
+2026-03-31,Port de Rotterdam,3,0,43,31.3,1,1,1,True
+2026-04-06,Port de Shanghai,5,5,85,71.6,3,0,2,True
+2026-04-10,Détroit d'Ormuz,3,2,73,66.3,2,0,1,True
+2026-04-14,Base navale de Yokosuka,3,0,49,30.0,1,0,2,True
+2026-04-16,Mer de Chine Méridionale,4,2,72,61.0,2,1,1,True
+2026-04-17,Base navale de Norfolk,2,0,50,46.0,2,0,0,False
+2026-04-18,Mer de Chine Méridionale,4,1,68,46.8,1,1,2,True
+2026-04-18,Port de Rotterdam,2,0,32,21.0,1,0,1,True
+2026-04-20,Port de Shanghai,5,1,60,55.2,0,2,3,False
+2026-04-28,Mer de Chine Méridionale,5,0,57,46.6,2,2,1,True
+2026-04-30,Port de Singapour,2,2,62,62.0,2,0,0,False
+2026-05-03,Port de Shanghai,5,5,73,70.0,2,2,1,True
+2026-05-04,Golfe Persique,4,2,70,61.8,3,1,0,False
+2026-05-05,Base navale de Pearl Harbor,5,4,77,67.4,3,1,1,True
+2026-05-10,Détroit de Malacca,2,1,62,58.0,2,0,0,False
+2026-05-16,Détroit d'Ormuz,1,0,46,46.0,0,0,1,False
+2026-05-17,Golfe Persique,1,0,39,39.0,0,0,1,False
+2026-05-21,Base navale de Yokosuka,1,0,18,18.0,0,0,1,False
+2026-05-23,Port de Shanghai,2,1,65,59.0,1,0,1,True
+2026-05-24,Mer de Chine Méridionale,1,0,48,48.0,1,0,0,False
+2026-05-30,Canal de Suez,1,0,52,52.0,1,0,0,False
+2026-06-11,Détroit de Malacca,3,2,72,63.3,2,0,1,True
+2026-06-14,Mer Baltique,4,2,60,45.8,3,0,1,True
+2026-06-15,Port de Busan,2,2,63,53.5,1,0,1,True
+2026-06-16,Base navale de Rota,4,3,65,56.8,3,0,1,True
+2026-06-20,Port de Busan,4,1,65,50.8,2,0,2,True
+2026-06-23,Port de Rotterdam,4,0,49,30.8,1,1,2,True
+2026-06-24,Mer de Chine Méridionale,4,2,77,61.0,2,1,1,True
+2026-06-29,Port militaire de Toulon,5,3,74,63.8,3,1,1,True
+2026-07-03,Port de Singapour,2,1,69,63.0,2,0,0,False
+2026-07-08,Détroit de Malacca,4,4,83,67.2,2,0,2,True
+2026-07-19,Mer de Chine Méridionale,3,1,63,38.7,1,0,2,True
+2026-08-14,Détroit de Malacca,1,0,57,57.0,1,0,0,False
+2026-08-16,Base navale de Norfolk,4,1,59,42.0,2,1,1,True
+2026-08-26,Mer Baltique,2,0,35,22.5,1,0,1,True
+2026-08-31,Base navale de Norfolk,5,1,62,42.8,2,1,2,True
+2026-09-10,Base navale de Norfolk,2,0,53,53.0,2,0,0,False
+2026-09-16,Base navale de Yokosuka,1,0,22,22.0,0,0,1,False
+2026-09-19,Détroit de Malacca,5,5,75,63.2,2,0,3,True
+2026-09-27,Base navale de Rota,3,3,58,48.0,1,0,2,True
+2026-09-27,Base navale de Yokosuka,1,0,43,43.0,0,1,0,False
+2026-10-03,Détroit de Malacca,2,1,62,53.5,1,1,0,False
+2026-10-03,Mer Baltique,3,0,49,35.3,2,0,1,True
+2026-10-08,Port de Rotterdam,5,0,49,35.6,2,1,2,True
+2026-10-10,Port de Singapour,5,2,68,56.2,2,1,2,True
+2026-10-11,Port militaire de Toulon,5,5,81,72.2,4,0,1,True
+2026-10-15,Détroit d'Ormuz,3,2,72,66.3,2,1,0,False
+2026-10-18,Port de Rotterdam,4,0,49,35.0,2,1,1,True
+2026-10-21,Détroit d'Ormuz,3,2,70,62.7,2,0,1,True
+2026-10-22,Port de Singapour,5,5,66,55.6,1,0,4,True
+2026-11-08,Mer de Chine Méridionale,4,1,65,42.8,1,1,2,True
+2026-11-09,Base navale de Rota,4,1,62,50.0,2,0,2,True
+2026-11-10,Détroit de Malacca,4,4,70,61.8,2,0,2,True
+2026-11-19,Détroit de Malacca,4,4,78,62.2,1,1,2,True
+2026-11-19,Port de Rotterdam,1,0,25,25.0,1,0,0,False
+2026-11-23,Mer de Chine Méridionale,5,2,65,55.4,4,0,1,True
+2026-12-10,Base navale de Yokosuka,2,0,49,43.5,1,1,0,False
+2026-12-12,Base navale de Norfolk,3,3,60,57.3,3,0,0,False
+2026-12-17,Détroit de Malacca,4,2,71,60.2,2,1,1,True
