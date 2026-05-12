@@ -46,5 +46,3 @@ Votre réponse  comporte :
 
 ```powershell
 dans le terminal : hf download DefendIntelligence/vessel-detection-labeled-patches --repo-type dataset --local-dir ./data/vessel-detection-labeled-patches
-
-lien : https://challenge.xviewdataset.org/download-links (telecharger les deux premiers zip)
